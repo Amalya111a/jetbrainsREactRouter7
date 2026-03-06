@@ -1,13 +1,46 @@
 import type { Route } from "./+types/home";
-import { Welcome } from "../welcome/welcome";
+import '@rescui/typography/lib/font-jb-sans-auto.css';
+import hljs from 'highlight.js/lib/core';
+import kotlin from 'highlight.js/lib/languages/kotlin';
+import 'highlight.js/styles/github.css';
+hljs.registerLanguage('kotlin', kotlin);
+import { ThemeProvider } from '@rescui/ui-contexts';
+import { HeaderSection } from '../header-section';
+import { LatestFromKotlinSection } from '../latest-from-kotlin-section';
+import { WhyKotlinSection } from '../why-kotlin-section';
+import { UsageSection } from '../usage-section';
+import { StartSection } from '../start-section';
+
+import '../index.scss';
+import '../styles/grid.scss';
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "New React Router App" },
-    { name: "description", content: "Welcome to React Router!" },
+    { title: "Kotlin Programming Language" },
+    { name: "description", content: "Kotlin is a concise multiplatform language" },
   ];
 }
 
+function OverviewPageContent() {
+  return (
+    <div className="overview-page">
+      <HeaderSection />
+      <LatestFromKotlinSection />
+      <WhyKotlinSection />
+      <UsageSection />
+      <StartSection />
+    </div>
+  );
+}
+
 export default function Home() {
-  return <Welcome />;
+  return (
+  
+      
+      <ThemeProvider theme="dark">
+        <OverviewPageContent />
+      </ThemeProvider>
+      
+    
+  );
 }
